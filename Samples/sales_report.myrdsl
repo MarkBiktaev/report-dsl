@@ -1,0 +1,376 @@
+report sales_report {
+	element properties {
+		font FontForTitle 'Bookman Old Style'
+		font FontForChart 'PT Sans'
+		
+		font-size FontSizeForTitle 75.px
+		font-size FontSizeForChart 15.px
+		
+		h-alignment hAlignForTitle center
+		
+		v-alignment vAlignForTitle bottom
+		
+		border BorderForTitle {all {color blue style dotted width medium}}
+		
+		display DisplayStyleForChartLabel block
+		
+		color-palette SixColorPalette
+		{
+			rgb(86 207 255)
+			rgb(182 228 255)
+			rgb(97 184 141)
+			rgb(126 218 173)
+			rgb(213 149 148)
+			rgb(249 166 132)
+			rgb(197 197 197)
+		}
+	}
+	data-sources { 
+		data-source SampleDB type sample
+	}
+	data-sets {
+		dataset SalesByProductLines { 
+			datasource SampleDB
+			fields {Year, Month, ProductLine, Revenue}
+			parameters {SelectedYear}
+			query {"SELECT 
+						YEAR(ORDERS.ORDERDATE) AS \"Year\", 
+						MONTH(ORDERS.ORDERDATE) AS \"Month\", 
+						PRODUCTLINE AS \"ProductLine\", 
+						SUM( PRICEEACH*QUANTITYORDERED )/100 AS \"Revenue\" 
+					FROM 
+						ORDERS, ORDERDETAILS, PRODUCTS 
+					WHERE 
+						ORDERDETAILS.PRODUCTCODE = PRODUCTS.PRODUCTCODE 
+						AND ORDERDETAILS.ORDERNUMBER = ORDERS.ORDERNUMBER 
+						
+						AND YEAR(ORDERS.ORDERDATE) = ? 
+					GROUP BY 
+						YEAR(ORDERS.ORDERDATE), MONTH(ORDERS.ORDERDATE), PRODUCTS.PRODUCTLINE "
+				}
+			}
+		dataset SalesByMonths {
+			datasource SampleDB
+			fields {Year, Month, Revenue}
+			parameters {SelectedYear}
+			query {"SELECT 
+						YEAR(ORDERS.ORDERDATE) AS \"Year\", 
+						MONTH(ORDERS.ORDERDATE) AS \"Month\", 
+						SUM( PRICEEACH*QUANTITYORDERED )/100 AS \"Revenue\"  
+					FROM 
+						ORDERDETAILS, ORDERS  
+					WHERE  
+						ORDERDETAILS.ORDERNUMBER = ORDERS.ORDERNUMBER 
+						AND YEAR(ORDERS.ORDERDATE) = ? 
+					GROUP BY 
+						YEAR(ORDERS.ORDERDATE), MONTH(ORDERS.ORDERDATE) "
+				}
+			}
+		dataset SalesByTerritory {
+			datasource SampleDB
+			fields {Year, Territory, Revenue}
+			parameters {SelectedYear}
+			query {"SELECT YEAR(ORDERS.ORDERDATE) AS \"Year\", 
+						OFFICES.TERRITORY AS \"Territory\", 
+						SUM( PRICEEACH*QUANTITYORDERED )/100 AS \"Revenue\" 
+					FROM 
+						ORDERDETAILS, ORDERS, CUSTOMERS, EMPLOYEES, OFFICES  
+					WHERE 
+						ORDERDETAILS.ORDERNUMBER = ORDERS.ORDERNUMBER 
+  						AND ORDERS.CUSTOMERNUMBER = CUSTOMERS.CUSTOMERNUMBER 
+  						AND CUSTOMERS.SALESREPEMPLOYEENUMBER = EMPLOYEES.EMPLOYEENUMBER 
+  						AND OFFICES.OFFICECODE = EMPLOYEES.OFFICECODE 
+						AND YEAR(ORDERS.ORDERDATE) = ? 
+					GROUP BY 
+						YEAR(ORDERS.ORDERDATE), OFFICES.TERRITORY "
+				}
+			}
+		dataset SalesByEmployeers {
+			datasource SampleDB
+			fields {Year, LastName,  FirstName, Revenue}
+			parameters {SelectedYear}
+			query {"SELECT 
+						YEAR(ORDERS.ORDERDATE) AS \"Year\",  
+						EMPLOYEES.LASTNAME as \"LastName\", 
+						EMPLOYEES.FIRSTNAME as \"FirstName\",  
+						SUM( PRICEEACH*QUANTITYORDERED )/100 AS \"Revenue\" 
+					FROM  
+						ORDERDETAILS, ORDERS, CUSTOMERS, EMPLOYEES 
+					WHERE 
+						ORDERDETAILS.ORDERNUMBER = ORDERS.ORDERNUMBER  
+  						AND ORDERS.CUSTOMERNUMBER = CUSTOMERS.CUSTOMERNUMBER 
+  						AND CUSTOMERS.SALESREPEMPLOYEENUMBER = EMPLOYEES.EMPLOYEENUMBER 
+						AND YEAR(ORDERS.ORDERDATE) = ? 
+					GROUP BY  
+						YEAR(ORDERS.ORDERDATE), EMPLOYEES.LASTNAME, EMPLOYEES.FIRSTNAME "
+				}
+			}
+		dataset SalesByOffices {
+			datasource SampleDB
+			fields {Year, City, Revenue}
+			parameters {SelectedYear}	
+			query {"SELECT YEAR(ORDERS.ORDERDATE) AS \"Year\", 
+						OFFICES.CITY as \"City\", 
+						SUM( PRICEEACH*QUANTITYORDERED )/100 AS \"Revenue\" 
+					FROM 
+						ORDERDETAILS, ORDERS, CUSTOMERS, EMPLOYEES, OFFICES  
+					WHERE 
+						ORDERDETAILS.ORDERNUMBER = ORDERS.ORDERNUMBER 
+  						AND ORDERS.CUSTOMERNUMBER = CUSTOMERS.CUSTOMERNUMBER 
+  						AND CUSTOMERS.SALESREPEMPLOYEENUMBER = EMPLOYEES.EMPLOYEENUMBER 
+  						AND OFFICES.OFFICECODE = EMPLOYEES.OFFICECODE 
+						AND YEAR(ORDERS.ORDERDATE) = ? 
+					GROUP BY 
+						YEAR(ORDERS.ORDERDATE), OFFICES.CITY "
+				}
+			}
+	}
+	parameters {
+		list-box SelectedYear {
+			promt-text 'Please select a year'
+				required true
+				values 
+					static multi integer {  'Y11' : '2011' 
+											'Y12' : '2012' default
+											'Y13' : '2013' }
+			}
+	}
+	body {
+		grid Header {}
+		{
+			column {}
+			row {
+				cell {} 
+				{
+				 label Title "Sales report" {
+						font FontForTitle 
+						font-size FontSizeForTitle 
+						h-alignment hAlignForTitle 
+//						border { BorderForTitle }
+						display DisplayStyleForChartLabel
+					}
+				}
+			}
+		}
+		grid Charts {}
+		{
+			column {}
+			row {
+				cell {} {
+					chart SalesByMonths line overlay 
+						dataset SalesByMonths 
+					{
+						width 20.cm height 10.cm
+						font FontForChart
+						title "Sales by year" left 
+						legend below middle vertical {
+							visibility hide
+						}
+						x-axe text {SalesByMonths.Month} {
+							line {color aqua style solid width thin}
+							major-grid {
+								scale 1
+								color aqua
+								style dashed
+								width thin 
+								tick above
+							}
+							minor-grid {
+								scale 1
+								color fuchsia
+								style dashed
+								width thin 
+								tick above
+							}
+							title "Month" below
+						}
+						y-axe linear {SalesByMonths.Revenue} {
+							line {color aqua style solid width thick}
+							major-grid {
+								scale 1
+								color black
+								style dashed
+								width thin 
+								tick above
+							}
+							minor-grid {
+								scale 1
+								color fuchsia
+								style dashed
+								width thin 
+								tick above
+							}
+							title "Revenue" left
+						}
+						color-palette {
+							SixColorPalette
+						}
+					}
+				}
+			}
+			row {
+				cell {
+					chart SalesByProductlines line overlay
+						dataset SalesByProductLines 
+						{
+							width 20.cm height 10.cm
+							font "sans-serif"
+							title "Sales by product lines" left
+							legend below middle horizontal {
+				//					title "Chart Legend Title" above
+							visibility true
+								}
+							x-axe text {SalesByProductLines.Month} {
+								line {color aqua style solid width thick}
+								major-grid {
+									scale 1
+									color aqua 
+									style dashed
+									width thin 
+									tick above
+								}
+								minor-grid {
+									scale 1
+									color fuchsia
+									style dashed
+									width thin 
+									tick above
+								}
+								title "Month" below
+							}
+							y-axe linear {SalesByProductLines.Revenue} 
+							  grouping by {SalesByProductLines.ProductLine}
+							  {
+								line {color aqua style solid width thick}
+								major-grid {
+									scale 1
+									color black
+									style dashed
+									width thin 
+									tick above
+								}
+								minor-grid {
+									scale 1
+									color fuchsia
+									style dashed
+									width thin 
+									tick above
+								}
+								title "Revenue" left
+							}
+							color-palette {
+								SixColorPalette
+							}
+						}
+				}
+			}
+			row {
+				cell {
+					chart SalesByTerritories pie 
+						dataset SalesByTerritory 
+						{
+							width 20.cm height 10.cm
+							font "sans-serif"
+							title "Sales by territories" left
+							legend below middle horizontal {
+				//					title "Chart Legend Title" above
+								}
+							x-axe text {SalesByTerritory.Territory} {
+								line {color aqua style dashed width thick}
+								major-grid {
+									scale 1
+									color aqua
+									style dashed
+									width thin 
+									tick above
+								}
+								minor-grid {
+									scale 1
+									color fuchsia
+									style dashed
+									width thin 
+									tick above
+								}
+								title "Territory" below
+							}
+							y-axe linear {SalesByTerritory.Revenue} {
+								line {color aqua style dashed width thick}
+								major-grid {
+									scale 1
+									color black
+									style dashed
+									width thin 
+									tick above
+								}
+								minor-grid {
+									scale 1
+									color fuchsia
+									style dashed
+									width thin 
+									tick above
+								}
+								title "Revenue" left
+							}
+							color-palette {
+								SixColorPalette
+							}
+						}
+				}
+			}
+			row {
+				cell {
+					chart SalesByOffices bar overlay
+						dataset SalesByOffices 
+						{
+							width 20.cm height 10.cm
+							font "sans-serif"
+							title "Sales by offices" left
+							legend below middle horizontal {
+//									title "Chart Legend Title" above
+							visibility hide
+								}
+							x-axe text {SalesByOffices.City} {
+								line {color aqua style dashed width thick}
+								major-grid {
+									scale 1
+									color aqua
+									style dashed
+									width thin 
+									tick above
+								}
+								minor-grid {
+									scale 1
+									color fuchsia
+									style dashed
+									width thin 
+									tick above
+								}
+//								title "City" below
+							}
+							y-axe linear {SalesByOffices.Revenue} {
+								line {color aqua style dashed width thick}
+								major-grid {
+									scale 1
+									color black
+									style dashed
+									width thin 
+									tick above
+								}
+								minor-grid {
+									scale 1
+									color fuchsia
+									style dashed
+									width thin 
+									tick above
+								}
+								title "Revenue" left
+							}
+							color-palette {
+								SixColorPalette
+							}
+						}
+				}
+			}
+		}
+	}
+}

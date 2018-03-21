@@ -1,0 +1,786 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="rDsl" nsURI="http://www.xtext.org/example/mydsl/RDsl" nsPrefix="rDsl">
+  <eClassifiers xsi:type="ecore:EClass" name="Root">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="root" eType="#//Report"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Report">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="datasources" eType="#//Datasources"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="datasets" eType="#//Datasets"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" eType="#//Parameters"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="styles" eType="#//Styles"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="pagesetup" eType="#//PageSetup"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="body" eType="#//Body" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elementProperties" eType="#//elementProperties"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="elementProperties">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="properties" upperBound="-1"
+        eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ElementProperty">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="colorpalette" eType="#//ColorPalette"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="font" eType="#//Font" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fontSize" eType="#//FontSize"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Datasources">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="datasource" upperBound="-1"
+        eType="#//Datasource" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Datasource">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DatasourceSample">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DatasourceJDBC">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="driver" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="url" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="user" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="password" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DatasourceCSV">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="url" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="charset" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="delimiter" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="headerline" eType="#//BooleanLiteral"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Datasets">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dataset" upperBound="-1"
+        eType="#//Dataset" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Dataset">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="datasourceref" eType="#//Datasource"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="field" upperBound="-1"
+        eType="#//DatasetField" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parameter" unique="false"
+        upperBound="-1" eType="#//Parameter"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="query" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DatasetField">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SimpleDatasetField" eSuperTypes="#//DatasetField"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ComputedDatasetField" eSuperTypes="#//DatasetField">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="aggregation" eType="#//AggregatorFunction"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="datatype" eType="#//DataType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="argument" eType="#//JSExpression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="filter" eType="#//JSExpression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Parameters">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parameter" upperBound="-1"
+        eType="#//Parameter" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StaticParameterValues" eSuperTypes="#//ParameterValue">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" upperBound="-1"
+        eType="#//StaticParameterValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sort" eType="#//StaticParameterSort"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sorttype" eType="#//SortType"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StaticParameterValue">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="label" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="default" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DynamicParameterValues" eSuperTypes="#//ParameterValue">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" upperBound="-1"
+        eType="#//DynamicParameterValue" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DynamicParameterValue">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dataset" eType="#//Dataset"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="label" eType="#//JSExpression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//JSExpression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="default" upperBound="-1"
+        eType="#//JSExpression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sort" eType="#//DatasetField"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sorttype" eType="#//SortType"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Parameter">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="controltype" eType="#//ParameterControlType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="promt" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="help" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="hide" eType="#//BooleanLiteral"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="required" eType="#//BooleanLiteral"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="duplicate" eType="#//BooleanLiteral"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="valuetype" eType="#//ParameterValueType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="paramtype" eType="#//ParameterType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="datatype" eType="#//DataType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="values" eType="#//ParameterValue"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ParameterValue"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Styles">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="style" upperBound="-1"
+        eType="#//Style" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PageSetup">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="properties" upperBound="-1"
+        eType="#//PageProperties" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Body">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
+        eType="#//ReportElements" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ReportElements"/>
+  <eClassifiers xsi:type="ecore:EClass" name="BasicElements"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ComplexElements"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Label" eSuperTypes="#//ReportElements #//BasicElements">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="content" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="properties" upperBound="-1"
+        eType="#//LabelProperties" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Text" eSuperTypes="#//ReportElements #//BasicElements">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="content" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="properties" upperBound="-1"
+        eType="#//LabelProperties" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DynamicText" eSuperTypes="#//ReportElements #//BasicElements">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="content" eType="#//JSExpression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="properties" upperBound="-1"
+        eType="#//LabelProperties" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="xData" eSuperTypes="#//ReportElements #//BasicElements">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="content" eType="#//JSExpression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="properties" upperBound="-1"
+        eType="#//LabelProperties" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Image" eSuperTypes="#//ReportElements #//BasicElements">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="content" eType="#//JSExpression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="properties" upperBound="-1"
+        eType="#//LabelProperties" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Chart" eSuperTypes="#//ReportElements #//BasicElements">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//STRING"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="subtype" eType="#//ChartSubType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dataset" eType="#//Dataset"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="properties" upperBound="-1"
+        eType="#//LabelProperties" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="title" eType="#//Title"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="legend" eType="#//Legend"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="plot" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="axe" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="xaxe" eType="#//XAxe" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="yaxe" eType="#//YAxe" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="colorpalette" eType="#//ColorPalette"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Legend">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="place" eType="#//Place"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="orientation" eType="#//OrientationType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="title" eType="#//Title"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="visibility" eType="#//LegendVisibility"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="XAxe">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//Axe" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="YAxe">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//Axe" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Axe">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="data" eType="#//JSExpression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="groupingby" eType="#//JSExpression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="title" eType="#//Title"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="line" eType="#//Line" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="majorgrid" eType="#//ChartGrid"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="minorgrid" eType="#//ChartGrid"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Line">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//BorderLine"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ChartGrid">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="scale" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//BorderLine"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tick" eType="#//Tick" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Tick">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="place" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//BorderLine"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ColorPalette">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" upperBound="-1"
+        eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="linkto" eType="#//ColorPalette"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Place">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="position" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="anchor" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Title">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="place" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="properties" eType="#//ChartElementProperties"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ChartElementProperties">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="padding" eType="#//Padding"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="border" eType="#//Border"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="visibility" eType="#//Visibility"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="font" eType="#//Font" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fontSize" eType="#//FontSize"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="color" eType="#//Color"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="backgroundColor" eType="#//Color"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="textStyle" eType="#//TextStyle"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="hAlign" eType="#//HAlignment"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="vAlign" eType="#//VAlignment"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="whiteSpace" eType="#//Whitespace"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="style" eType="#//StyleRef"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="display" eType="#//Display"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="STRING">
+    <eLiterals name="bar" literal="bar"/>
+    <eLiterals name="line" value="1" literal="line"/>
+    <eLiterals name="area" value="2" literal="area"/>
+    <eLiterals name="pie" value="3" literal="pie"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ChartSubType">
+    <eLiterals name="sbs" literal="side-by-side"/>
+    <eLiterals name="stacked" value="1" literal="stacked"/>
+    <eLiterals name="percent" value="2" literal="percent-stacked"/>
+    <eLiterals name="overlay" value="3" literal="overlay"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="PositionType">
+    <eLiterals name="North" literal="top"/>
+    <eLiterals name="South" value="1" literal="bottom"/>
+    <eLiterals name="West" value="2" literal="left"/>
+    <eLiterals name="East" value="3" literal="right"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="OrientationType">
+    <eLiterals name="vertical" literal="vertical"/>
+    <eLiterals name="horizontal" value="1" literal="horizontal"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="List" eSuperTypes="#//ReportElements #//ComplexElements">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="properties" upperBound="-1"
+        eType="#//LabelProperties" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="headerelements" upperBound="-1"
+        eType="#//ReportElements" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="detailelements" upperBound="-1"
+        eType="#//ReportElements" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="footerelements" upperBound="-1"
+        eType="#//ReportElements" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Grid" eSuperTypes="#//ReportElements #//ComplexElements">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="properties" upperBound="-1"
+        eType="#//LabelProperties" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="columns" upperBound="-1"
+        eType="#//Column" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rows" upperBound="-1" eType="#//Row"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Table" eSuperTypes="#//ReportElements #//ComplexElements">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="properties" upperBound="-1"
+        eType="#//LabelProperties" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dataset" eType="#//Dataset"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="columns" upperBound="-1"
+        eType="#//Column" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="headerrows" upperBound="-1"
+        eType="#//Row" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="detailrows" upperBound="-1"
+        eType="#//Row" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="footerrows" upperBound="-1"
+        eType="#//Row" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CrossTable" eSuperTypes="#//ReportElements #//ComplexElements">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="properties" upperBound="-1"
+        eType="#//LabelProperties" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Column">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="order" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="properties" upperBound="-1"
+        eType="#//LabelProperties" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Row">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="order" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="properties" upperBound="-1"
+        eType="#//LabelProperties" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="cells" upperBound="-1"
+        eType="#//Cell" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Cell">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="order" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="properties" upperBound="-1"
+        eType="#//LabelProperties" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
+        eType="#//ReportElements" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PageProperties">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="font" eType="#//Font" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fontSize" eType="#//FontSize"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="color" eType="#//Color"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="backgroundColor" eType="#//Color"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="textStyle" eType="#//TextStyle"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="hAlign" eType="#//HAlignment"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="vAlign" eType="#//VAlignment"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="whiteSpace" eType="#//Whitespace"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="style" eType="#//StyleRef"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="display" eType="#//Display"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="border" eType="#//Border"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="padding" eType="#//Padding"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="margin" eType="#//Padding"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="visibility" eType="#//Visibility"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="pagebreak" eType="#//PageBreak"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="toc" eType="#//Toc" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="bookmark" eType="#//Bookmark"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="width" eType="#//Width"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="height" eType="#//Height"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LabelProperties">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="font" eType="#//Font" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fontSize" eType="#//FontSize"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="color" eType="#//Color"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="backgroundColor" eType="#//Color"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="textStyle" eType="#//TextStyle"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="hAlign" eType="#//HAlignment"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="vAlign" eType="#//VAlignment"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="whiteSpace" eType="#//Whitespace"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="style" eType="#//StyleRef"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="display" eType="#//Display"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="border" eType="#//Border"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="padding" eType="#//Padding"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="margin" eType="#//Padding"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="visibility" eType="#//Visibility"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="pagebreak" eType="#//PageBreak"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="toc" eType="#//Toc" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="bookmark" eType="#//Bookmark"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="width" eType="#//Width"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="height" eType="#//Height"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="alttext" eType="#//AltText"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Font">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="linkto" eType="#//Font"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FontSize">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="linkto" eType="#//FontSize"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SizeValueUnit">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="#//SizeUnit"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SizeValue">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="unit" eType="#//LengthUnit"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SizeValuePercent">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Color"/>
+  <eClassifiers xsi:type="ecore:EClass" name="StringColor" eSuperTypes="#//Color">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="#//ColorType"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="HexColor" eSuperTypes="#//Color">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RgbColor">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="r" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="g" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="b" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TextStyle">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="I" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="B" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="U" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="T" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="HAlignment">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="#//HalignmentType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="linkto" eType="#//HAlignment"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="VAlignment">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="#//ValignmentType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="linkto" eType="#//VAlignment"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Whitespace">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="#//WhitespaceType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="linkto" eType="#//Whitespace"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Display">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="#//DisplayType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="linkto" eType="#//Display"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Border">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="linkto" eType="#//Border"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BorderAll"/>
+  <eClassifiers xsi:type="ecore:EClass" name="BorderSide">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//BorderLine"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//BorderLine"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="top" eType="#//BorderLine"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="bottom" eType="#//BorderLine"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BorderLine" eSuperTypes="#//BorderAll">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="style" eType="#//BorderLineStyleType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="width" eType="#//BorderWidth"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="color" eType="#//Color"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BorderWidth">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="WidthTypeValue">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="#//WidthType"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Padding"/>
+  <eClassifiers xsi:type="ecore:EClass" name="IndentAll" eSuperTypes="#//Padding"/>
+  <eClassifiers xsi:type="ecore:EClass" name="IndentSide" eSuperTypes="#//Padding">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//IndentValue"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//IndentValue"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="top" eType="#//IndentValue"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="bottom" eType="#//IndentValue"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IndentValue" eSuperTypes="#//IndentAll">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PageBreak">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="before" eType="#//PageBreakValue"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="after" eType="#//PageBreakValue"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="inside" eType="#//PageBreakValue"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="interval" eType="#//IntLiteral"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="repeat" eType="#//BooleanLiteral"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Visibility">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="show" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LegendVisibility">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="HideAll" eSuperTypes="#//Visibility">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expression" eType="#//JSExpression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="format" eType="#//OutputFormatType"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="HideForOne" eSuperTypes="#//Visibility">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" upperBound="-1"
+        eType="#//HideAll" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="HideForMore" eSuperTypes="#//Visibility">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="format" unique="false"
+        upperBound="-1" eType="#//OutputFormatType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expression" eType="#//JSExpression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="JSExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//Literal"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Toc">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="style" eType="#//StyleRef"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//JSExpression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Bookmark">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expression" eType="#//JSExpression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StyleRef">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="refname" eType="#//Style"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Style">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="properties" upperBound="-1"
+        eType="#//LabelProperties" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Width">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//IndentValue"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Height">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//IndentValue"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AltText">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expression" eType="#//JSExpression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="SizeUnit">
+    <eLiterals name="M" literal="medium"/>
+    <eLiterals name="L" value="1" literal="large"/>
+    <eLiterals name="Lr" value="2" literal="larger"/>
+    <eLiterals name="XL" value="3" literal="x-large"/>
+    <eLiterals name="XXL" value="4" literal="xx-large"/>
+    <eLiterals name="S" value="5" literal="small"/>
+    <eLiterals name="Sr" value="6" literal="smaller"/>
+    <eLiterals name="XS" value="7" literal="x-small"/>
+    <eLiterals name="XXS" value="8" literal="xx-small"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="LengthUnit">
+    <eLiterals name="cm" literal="cm"/>
+    <eLiterals name="ems" value="1" literal="ems"/>
+    <eLiterals name="exs" value="2" literal="exs"/>
+    <eLiterals name="in" value="3" literal="in"/>
+    <eLiterals name="mm" value="4" literal="mm"/>
+    <eLiterals name="pc" value="5" literal="pc"/>
+    <eLiterals name="pt" value="6" literal="pt"/>
+    <eLiterals name="px" value="7" literal="px"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="HalignmentType">
+    <eLiterals name="left" literal="left"/>
+    <eLiterals name="center" value="1" literal="center"/>
+    <eLiterals name="right" value="2" literal="right"/>
+    <eLiterals name="justify" value="3" literal="justify"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ValignmentType">
+    <eLiterals name="bottom" literal="bottom"/>
+    <eLiterals name="middle" value="1" literal="middle"/>
+    <eLiterals name="top" value="2" literal="top"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="WhitespaceType">
+    <eLiterals name="nowrap" literal="no-wrapping"/>
+    <eLiterals name="normal" value="1" literal="normal"/>
+    <eLiterals name="pre" value="2" literal="preformatted"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="DisplayType">
+    <eLiterals name="block" literal="block"/>
+    <eLiterals name="inline" value="1" literal="inline"/>
+    <eLiterals name="none" value="2" literal="no"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="BorderLineStyleType">
+    <eLiterals name="solid" literal="solid"/>
+    <eLiterals name="dotted" value="1" literal="dotted"/>
+    <eLiterals name="dashed" value="2" literal="dashed"/>
+    <eLiterals name="double" value="3" literal="double"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="WidthType">
+    <eLiterals name="thin" literal="thin"/>
+    <eLiterals name="medium" value="1" literal="medium"/>
+    <eLiterals name="thick" value="2" literal="thick"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="OutputFormatType">
+    <eLiterals name="xlsx" literal="xlsx"/>
+    <eLiterals name="postscript" value="1" literal="postscript"/>
+    <eLiterals name="docx" value="2" literal="docx"/>
+    <eLiterals name="pptx" value="3" literal="pptx"/>
+    <eLiterals name="pdf" value="4" literal="pdf"/>
+    <eLiterals name="xls" value="5" literal="xls"/>
+    <eLiterals name="ppt" value="6" literal="ppt"/>
+    <eLiterals name="doc" value="7" literal="doc"/>
+    <eLiterals name="html" value="8" literal="html"/>
+    <eLiterals name="odp" value="9" literal="odp"/>
+    <eLiterals name="odt" value="10" literal="odt"/>
+    <eLiterals name="ods" value="11" literal="ods"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="PageBreakType">
+    <eLiterals name="pageBreakAfter" literal="after"/>
+    <eLiterals name="pageBreakBefore" value="1" literal="before"/>
+    <eLiterals name="pageBreakInside" value="2" literal="inside"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="PageBreakValue">
+    <eLiterals name="auto" literal="auto"/>
+    <eLiterals name="always" value="1" literal="always"/>
+    <eLiterals name="avoid" value="2" literal="avoid"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="SortType">
+    <eLiterals name="asc" literal="asc"/>
+    <eLiterals name="desc" value="1" literal="desc"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="BorderType">
+    <eLiterals name="R" literal="right"/>
+    <eLiterals name="L" value="1" literal="left"/>
+    <eLiterals name="T" value="2" literal="top"/>
+    <eLiterals name="B" value="3" literal="bottom"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="TargetType">
+    <eLiterals name="Blank" literal="blank"/>
+    <eLiterals name="Parent" value="1" literal="parent"/>
+    <eLiterals name="Self" value="2" literal="self"/>
+    <eLiterals name="Top" value="3" literal="top"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="DrillThroughType">
+    <eLiterals name="NewWindow" literal="new-window"/>
+    <eLiterals name="SameFrame" value="1" literal="same-frame"/>
+    <eLiterals name="ParentFrame" value="2" literal="parent-frame"/>
+    <eLiterals name="WholePage" value="3" literal="whole-page"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ColorType">
+    <eLiterals name="aqua" literal="aqua"/>
+    <eLiterals name="blue" value="1" literal="blue"/>
+    <eLiterals name="black" value="2" literal="black"/>
+    <eLiterals name="fuchsia" value="3" literal="fuchsia"/>
+    <eLiterals name="gray" value="4" literal="gray"/>
+    <eLiterals name="green" value="5" literal="green"/>
+    <eLiterals name="lime" value="6" literal="lime"/>
+    <eLiterals name="maroon" value="7" literal="maroon"/>
+    <eLiterals name="navy" value="8" literal="navy"/>
+    <eLiterals name="olive" value="9" literal="olive"/>
+    <eLiterals name="orange" value="10" literal="orange"/>
+    <eLiterals name="purple" value="11" literal="purple"/>
+    <eLiterals name="red" value="12" literal="red"/>
+    <eLiterals name="silver" value="13" literal="silver"/>
+    <eLiterals name="teal" value="14" literal="teal"/>
+    <eLiterals name="yellow" value="15" literal="yellow"/>
+    <eLiterals name="white" value="16" literal="white"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ParameterControlType">
+    <eLiterals name="chb" literal="check-box"/>
+    <eLiterals name="tb" value="1" literal="text-box"/>
+    <eLiterals name="lb" value="2" literal="list-box"/>
+    <eLiterals name="rb" value="3" literal="radio-button"/>
+    <eLiterals name="cb" value="4" literal="combo-box"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ParameterValueType">
+    <eLiterals name="dynamic" literal="dynamic"/>
+    <eLiterals name="static" value="1" literal="static"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ParameterType">
+    <eLiterals name="multi" literal="multi"/>
+    <eLiterals name="simple" value="1" literal="simple"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="DataType">
+    <eLiterals name="boolean" literal="boolean"/>
+    <eLiterals name="date" value="1" literal="date"/>
+    <eLiterals name="datetime" value="2" literal="datetime"/>
+    <eLiterals name="decimal" value="3" literal="decimal"/>
+    <eLiterals name="float" value="4" literal="float"/>
+    <eLiterals name="integer" value="5" literal="integer"/>
+    <eLiterals name="string" value="6" literal="string"/>
+    <eLiterals name="time" value="7" literal="time"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="StaticParameterSort">
+    <eLiterals name="label" literal="label"/>
+    <eLiterals name="value" value="1" literal="value"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="AggregatorFunction">
+    <eLiterals name="count" literal="count"/>
+    <eLiterals name="sum" value="1" literal="sum"/>
+    <eLiterals name="max" value="2" literal="max"/>
+    <eLiterals name="min" value="3" literal="min"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Literal"/>
+  <eClassifiers xsi:type="ecore:EClass" name="IntLiteral" eSuperTypes="#//Literal">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FloatLiteral" eSuperTypes="#//Literal">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StringLiteral" eSuperTypes="#//Literal">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BooleanLiteral" eSuperTypes="#//Literal">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NullLiteral" eSuperTypes="#//Literal"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ID" eSuperTypes="#//Literal">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//DatasetField"/>
+  </eClassifiers>
+</ecore:EPackage>

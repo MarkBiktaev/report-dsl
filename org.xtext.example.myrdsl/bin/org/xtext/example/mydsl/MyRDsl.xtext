@@ -1,0 +1,620 @@
+grammar org.xtext.example.mydsl.RDsl with org.eclipse.xtext.common.Terminals
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
+
+generate rDsl "http://www.xtext.org/example/mydsl/RDsl"
+
+Root:
+	root = Report
+;
+Report:
+	'report' name = ID 
+		'{' ( datasources = Datasources?
+			& datasets = Datasets?
+			& parameters = Parameters?
+			& styles = Styles?
+			& pagesetup = PageSetup?
+			& body = Body?
+			& elementProperties = elementProperties?
+			)
+		'}'
+;
+elementProperties:
+	'element properties' '{'
+		properties += (
+			  Font
+			| FontSize
+			| ColorPalette
+//			| Color 
+//			| BackgroundColor
+//			| TextStyle 
+			| HAlignment
+			| VAlignment
+			| Whitespace
+			| StyleRef
+			| Display
+			| Border
+			| Padding
+			| Margin
+			| Visibility
+			| PageBreak
+			| Bookmark 
+			| Width
+			| Height
+			| AltText
+		)+
+	'}'
+;
+QualifiedName:
+	ID ('.' ID)*
+;
+Datasources:
+	{Datasources} 'data-sources' '{' datasource += Datasource*	'}'
+;
+Datasource:
+	'data-source' name = ID 'type' type = (DatasourceSample | DatasourceJDBC | DatasourceCSV)
+;
+DatasourceSample:
+	type = 'sample'
+;
+DatasourceJDBC:
+	'jdbc' '{' (
+	'driver' driver = STRING &
+	'url' url = STRING &
+	'user' user = STRING &
+	'password' password = STRING
+	)'}'
+;
+DatasourceCSV:
+	'csv' '{' (
+	'url' url = STRING &
+	'charset' charset = STRING &
+	'delimiter' delimiter = STRING &
+	'headerline' headerline = (BooleanLiteral)
+	)'}'
+;
+Datasets:
+	'data-sets' '{' dataset += Dataset* '}'
+;
+Dataset:
+	'dataset' name = ID '{' (
+	'datasource' datasourceref = [Datasource | QualifiedName] &
+	('fields' '{' field+=DatasetField (',' field+=DatasetField)* '}')? &
+	('parameters' '{' parameter+=[Parameter] (',' parameter+=[Parameter])* '}')? &
+	'query' '{' query = STRING? '}'
+	 ) '}'
+;
+DatasetField:
+	 SimpleDatasetField | ComputedDatasetField 
+;
+SimpleDatasetField:
+	 name=ID
+;
+ComputedDatasetField:
+	 name=ID aggregation=AggregatorFunction datatype = DataType argument = JSExpression ('filter' filter = JSExpression)? 
+;
+Parameters:
+	'parameters' '{'  parameter += Parameter* '}'
+;
+StaticParameterValues:
+	'{' value += StaticParameterValue*
+		('sort by' sort = StaticParameterSort sorttype = SortType)?
+	'}'
+;
+StaticParameterValue:
+	(label = STRING ':' value = STRING (default ?= 'default')?)
+;
+DynamicParameterValues:
+	'{' value += DynamicParameterValue '}'
+;
+DynamicParameterValue:
+	'dataset' dataset = [Dataset]
+	(label = JSExpression ':' value = JSExpression)
+	(('default' default += JSExpression*)? &
+	('sort by' sort = [DatasetField | QualifiedName] sorttype = SortType)?)
+;
+Parameter:
+	controltype = ParameterControlType name = ID
+	'{' ( 
+		  ('promt-text' promt = STRING)?
+		& ('help-text' help = STRING)?
+		& ('hidden' hide = BooleanLiteral)?
+		& ('required' required = BooleanLiteral)?
+		& ('duplicate' duplicate = BooleanLiteral)?
+		& ('values' valuetype = ParameterValueType
+					paramtype = ParameterType 
+					datatype = DataType
+			values = ParameterValue
+		  )
+	)? '}'
+;
+ParameterValue:
+	(DynamicParameterValues | StaticParameterValues)
+;
+Styles:
+	'styles' '{' style += Style* '}'
+;
+PageSetup:
+	'page-setup' ( '{' properties += PageProperties '}')?
+;
+Body:
+	{Body} 'body' '{' elements += ReportElements* '}'
+;
+ReportElements:
+	Label | Text | DynamicText | xData | Image | Chart | List | Grid | Table | CrossTable
+;
+BasicElements:
+	Label | Text | DynamicText | xData | Image | Chart
+;
+ComplexElements:
+ 	List | Grid | Table | CrossTable
+;
+Label:
+	'label' name = ID 
+	 content = STRING
+	('{' properties += LabelProperties
+	'}')?
+;
+Text:
+	'text' name = ID 
+	content = STRING
+	('{' properties += LabelProperties	'}')?
+;
+DynamicText:
+	'dynamic-text' name = ID 
+	content = JSExpression 
+	('{' properties += LabelProperties	'}')?
+;
+xData:
+	'data' name = ID 
+	content = (JSExpression)
+	('{' properties += LabelProperties	'}')?
+;
+Image:
+	'image' name = ID
+	'type' type = ('file' | 'url')
+	'content' content = JSExpression
+	('{' properties += LabelProperties	'}')?
+;
+Chart:
+	'chart' name = ID
+	(type = (ChartWithAxesType) subtype = ChartSubType | type = ChartWithoutAxesType)
+	'dataset' dataset = [ Dataset | QualifiedName ]
+	('{' 
+		properties += LabelProperties
+		( title = Title )?
+		( legend = Legend )? 
+		( plot = Plot)? 
+		(axe = NoAxe | (xaxe = XAxe &
+		 yaxe = YAxe))
+		( colorpalette = ColorPalette)?
+	'}')?
+;
+Legend:
+	'legend' place = Place orientation = OrientationType
+	'{'
+		(title = Title)? &
+		(visibility = LegendVisibility)? &
+		('direction')? &
+		('show value')?
+	'}'
+;
+Plot:
+	'plot' '{' '}'
+;
+XAxe:
+	'x-' value=Axe
+;
+YAxe:
+	'y-' value=Axe
+;
+Axe:
+	'axe' type = ('linear' | 'text' | 'logarithmic' | 'date-time') data = JSExpression ('grouping by' groupingby = JSExpression)?
+	'{' (
+		(title = Title)? &
+		(line = Line)? &
+		('major-' majorgrid = ChartGrid)? &
+		('minor-' minorgrid = ChartGrid)?
+	)'}'
+;
+NoAxe:
+	'no axe'
+;
+Line:
+	'line' '{' value=BorderLine '}'
+;
+ChartGrid:
+	'grid' '{'( ('scale' scale = INT) & value=BorderLine & tick=Tick )'}'
+;
+Tick:
+	'tick' place=('above' | 'across' | 'below') ('{' value=BorderLine '}')?
+;
+ColorPalette:
+	'color-palette' (name=ID)? '{' ((value += (StringColor | HexColor | RgbColor)+) | (linkto=[ColorPalette])) '}'
+;
+Place:
+	(position = ('left' | 'right') anchor = ('top' | 'middle' | 'bottom'))
+	|(position = ('above' | 'below') anchor = ('left' | 'middle' | 'right'))
+;
+Title:
+	'title' value = STRING place=('left' | 'right' | 'above' | 'below')
+	('{' properties = ChartElementProperties '}')?
+;
+ChartElementProperties:
+	( padding = Padding?
+	& border = Border?
+	& visibility = Visibility?
+	& font = Font?
+	& fontSize = FontSize?
+	& color = Color? 
+	& backgroundColor = BackgroundColor?
+	& textStyle = TextStyle? 
+	& hAlign = HAlignment? 
+	& vAlign = VAlignment? 
+	& whiteSpace = Whitespace? 
+	& style = StyleRef? 
+	& display = Display?
+	)
+;
+enum ChartWithAxesType returns STRING:
+	bar | line | area
+;
+enum ChartWithoutAxesType returns STRING:
+	pie 
+;
+enum ChartSubType:
+	sbs = 'side-by-side'| stacked | percent = 'percent-stacked' | overlay
+;
+enum PositionType:
+	North = 'top' | South = 'bottom' | West = 'left' | East = 'right'
+;
+enum OrientationType:
+	vertical | horizontal
+;
+List:
+	'list' name = ID 
+	('{' properties += LabelProperties	'}')?
+	'{'
+		('header' '{' headerelements += ReportElements* '}')? 
+ 		('detail' '{' detailelements += ReportElements* '}')?
+ 		('footer' '{' footerelements += ReportElements* '}')?
+	'}'
+; 
+Grid:
+	'grid' name = ID 
+	('{' properties += LabelProperties	'}')?
+	'{' columns += Column+ rows	+= Row+ '}'
+;
+Table:
+	'table' name = ID 
+	('{' properties += LabelProperties	'}')?
+	('dataset' dataset = [ Dataset | QualifiedName ])?
+	'{' columns += Column+ 
+			('header' '{' headerrows += Row+ '}')? 
+	 		('detail' '{' detailrows += Row+ '}')?
+	 		('footer' '{' footerrows += Row+ '}')?
+	'}'
+; 
+CrossTable:
+	'cross-table' name = ID
+	('{' properties += LabelProperties	'}')?
+;
+Column:
+	{Column} 'column' (order = INT)?
+	('{' properties += LabelProperties	'}')?
+;
+Row:
+	'row' (order = INT)? 
+	('{' properties += LabelProperties	'}')?
+	'{' cells += Cell+ '}'
+;
+Cell:
+	{Cell} 'cell' (order = INT)? 
+	('{' properties += LabelProperties	'}')?
+	'{' elements += ReportElements* '}'
+;
+
+/**************************
+ * ELEMENT PROPERTY GROUPS
+ **************************/
+PageProperties
+	: font = Font?
+	& fontSize = FontSize?
+	& color = Color? 
+	& backgroundColor = BackgroundColor?
+	& textStyle = TextStyle? 
+	& hAlign = HAlignment? 
+	& vAlign = VAlignment? 
+	& whiteSpace = Whitespace? 
+	& style = StyleRef? 
+	& display = Display? 
+	& border = Border? 
+	& padding = Padding? 
+	& margin = Margin? 
+	& visibility = Visibility? 
+	& pagebreak = PageBreak? 
+	& toc = Toc? 
+	& bookmark = Bookmark? 
+	& width = Width? 
+	& height = Height?
+;
+LabelProperties
+	: (font = Font?
+	& fontSize = FontSize?
+	& color = Color? 
+	& backgroundColor = BackgroundColor?
+	& textStyle = TextStyle? 
+	& hAlign = HAlignment? 
+	& vAlign = VAlignment? 
+	& whiteSpace = Whitespace? 
+	& style = StyleRef? 
+	& display = Display? 
+	& border = Border? 
+	& padding = Padding? 
+	& margin = Margin? 
+	& visibility = Visibility? 
+	& pagebreak = PageBreak? 
+	& toc = Toc? 
+	& bookmark = Bookmark? 
+	& width = Width? 
+	& height = Height? 
+	& alttext = AltText?)
+;
+
+/**********************
+ * ELEMENT PROPERTIES
+ **********************/
+Font:
+	'font' (name=ID)? (value = STRING | (linkto=[Font]))
+;
+FontSize:
+	'font-size' (name=ID)? (value = (SizeValueUnit | SizeValue | SizeValuePercent) | (linkto=[FontSize]))
+;
+SizeValueUnit:
+	value = SizeUnit
+;
+SizeValue:
+	value = FLOAT unit = LengthUnit
+;
+SizeValuePercent:
+	value = FLOAT '%'
+;
+Color:
+	'color' (StringColor | HexColor)
+;
+BackgroundColor returns Color:
+	'bg-color' (StringColor | HexColor)
+;
+StringColor:
+	value = ColorType
+;
+HexColor:
+	value = HEX_COLOR
+;
+RgbColor:
+	'rgb(' r = INT g = INT b = INT ')'
+;
+TextStyle:
+	{TextStyle} 'text-style' (name=ID)? ((I ?= 'italic'? & B ?= 'bold'? & U ?= 'underline'? & T ?= 'through-line'?) )
+;
+HAlignment:
+	'h-alignment' (name=ID)? (value = HalignmentType | (linkto=[HAlignment]))
+;
+VAlignment:
+	'v-alignment' (name=ID)? (value = ValignmentType | (linkto=[VAlignment]))
+;
+Whitespace:
+	'whitespace' (name=ID)? (value = WhitespaceType | (linkto=[Whitespace]))
+;
+Display:
+	'display' (name=ID)? (value = DisplayType | (linkto=[Display]))
+;
+Border:
+	'border' (name=ID)? '{' (value = (BorderAll | BorderSide) | (linkto=[Border])) '}'
+;
+BorderAll:
+	'all' '{' (BorderLine)? '}'
+;
+BorderSide:
+	('right' '{' right = BorderLine '}')? & ('left' '{' left = BorderLine '}')? & ('top' '{' top = BorderLine '}')? & ('bottom' '{' bottom = BorderLine '}')?
+;
+BorderLine:
+	'style' style=BorderLineStyleType & 'width' width = BorderWidth & color = Color
+;
+BorderWidth:
+	value = (WidthTypeValue | SizeValue)
+;
+WidthTypeValue:
+	value = WidthType
+;
+Padding:
+	'padding' '{' (IndentAll | IndentSide) '}'
+;
+Margin returns Padding:
+	'margin' '{' (IndentAll | IndentSide) '}'
+;
+IndentAll:
+	'all' IndentValue
+;
+IndentSide:
+	('right' right=IndentValue)? & ('left' left=IndentValue)? & ('top' top=IndentValue)? & ('bottom' bottom=IndentValue)?
+;
+IndentValue:
+	value = (SizeValue | SizeValuePercent)
+;
+PageBreak:
+	'page-break' '{' 
+		( ('before' before=PageBreakValue)? 
+		& ('after' after=PageBreakValue)? 
+		& ('inside' inside=PageBreakValue)?
+		& ('interval' interval=IntLiteral)?
+		& ('repeat-header' repeat=BooleanLiteral)?
+		) '}'
+;
+Visibility:
+	'visibility' (show ?= 'true' | 'hide for' (HideAll | HideForOne | HideForMore))
+;
+LegendVisibility:
+	'visibility' value = ('true'|'hide')
+;
+HideAll:
+	'all' (expression = JSExpression)?
+;
+HideForOne:
+	'{' value += HideForValue+ '}'
+;
+HideForValue returns HideAll:
+	format = OutputFormatType (expression = JSExpression)?
+;
+HideForMore:
+	'(' format += OutputFormatType+ ')'(expression = JSExpression)?
+;
+JSExpression:
+	'{'(value = Literal) '}'
+;
+Toc:
+	'toc'  (style = StyleRef)? value = JSExpression
+;
+Bookmark:
+	'bookmark' expression = JSExpression
+;
+StyleRef:
+	'style' refname = [Style]
+;
+Style:
+	'style' name = ID ('{' properties += LabelProperties '}')?
+;
+Width:
+	'width' value = IndentValue
+;
+Height:
+	'height' value = IndentValue
+;
+AltText:
+	'alt-text' expression = JSExpression
+;
+
+/***************************************
+ *   E N U M S
+ ***************************************/
+enum SizeUnit
+	: M = 'medium' 
+	| L = 'large' | Lr = 'larger'  | XL = 'x-large' | XXL = 'xx-large' 
+	| S = 'small' | Sr = 'smaller' | XS = 'x-small' | XXS = 'xx-small'
+;
+enum LengthUnit:
+	cm | ems | exs | in | mm | pc | pt | px
+;
+enum HalignmentType:
+	left | center | right | justify
+;
+enum ValignmentType:
+	bottom  | middle | top
+;
+enum WhitespaceType:
+	nowrap = 'no-wrapping' | normal = 'normal' | pre = 'preformatted'
+;
+enum DisplayType:
+	block = 'block' | inline = 'inline' | none = 'no'
+;
+enum BorderLineStyleType:
+	solid | dotted | dashed | double
+;
+enum WidthType:
+	thin | medium | thick
+;
+enum OutputFormatType:
+	xlsx | postscript | docx | pptx | pdf | xls | ppt | doc | html | odp | odt | ods
+;
+enum PageBreakType:
+	pageBreakAfter = 'after' | pageBreakBefore = 'before' | pageBreakInside = 'inside'
+;
+enum PageBreakValue:
+	auto | always | avoid
+;
+enum SortType:
+	asc = 'asc' | desc = 'desc'
+;
+enum BorderType:
+	R = 'right' | L = 'left' | T = 'top' | B = 'bottom'
+;
+enum TargetType:
+	Blank = 'blank' | Parent = 'parent' | Self = 'self' | Top = 'top' 
+;
+enum DrillThroughType:
+	NewWindow = 'new-window' | SameFrame = 'same-frame' | ParentFrame = 'parent-frame' | WholePage = 'whole-page'
+;
+enum ColorType:
+    aqua | blue | black | fuchsia | gray | green | lime | maroon | navy | 
+    olive | orange | purple | red | silver | teal | yellow | white
+;
+enum ParameterControlType:
+	chb = 'check-box' | tb = 'text-box' | lb = 'list-box' | rb = 'radio-button' | cb = 'combo-box' 
+;
+enum ParameterValueType:
+	dynamic | static
+;
+enum ParameterType:
+	multi | simple
+;
+enum DataType: 
+	boolean | date | datetime | decimal | float | integer | string | time
+;
+enum StaticParameterSort:
+	label | value
+;
+enum AggregatorFunction:
+	count | sum | max | min	
+;
+
+/** *************************************
+ *   T E R M I N A L S
+ ** *************************************
+ */
+terminal ID: '^'?('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
+terminal INT returns ecore::EInt: ('0'..'9')+;
+terminal STRING: 
+			'"' ( '\\' . /* 'b'|'t'|'n'|'f'|'r'|'u'|'"'|"'"|'\\' */ | !('\\'|'"') )* '"' |
+			"'" ( '\\' . /* 'b'|'t'|'n'|'f'|'r'|'u'|'"'|"'"|'\\' */ | !('\\'|"'") )* "'"
+		; 
+terminal ML_COMMENT: '/*' -> '*/';
+terminal SL_COMMENT: '//' !('\n'|'\r')* ('\r'? '\n')?;
+
+terminal WS: (' '|'\t'|'\r'|'\n')+;
+
+terminal ANY_OTHER: .;
+terminal FLOAT:('0'..'9')+'.'('0'..'9')*;
+terminal HEX_COLOR: "#"
+    ('0'..'9'|'a'..'f'|'A'..'F')('0'..'9'|'a'..'f'|'A'..'F')('0'..'9'|'a'..'f'|'A'..'F')
+    ('0'..'9'|'a'..'f'|'A'..'F')('0'..'9'|'a'..'f'|'A'..'F')('0'..'9'|'a'..'f'|'A'..'F');
+
+///** *************************************
+// *   L I T E R A L S
+// ** *************************************
+// */
+Literal 
+	: FloatLiteral
+	| IntLiteral
+	| StringLiteral
+	| BooleanLiteral
+	| NullLiteral
+	| ({ID} value = [DatasetField | QualifiedName])
+	;
+IntLiteral
+	: value=INT
+	;
+FloatLiteral
+	: value=FLOAT
+	;
+StringLiteral
+	: value=STRING
+	;
+BooleanLiteral
+	: value= ('true' | 'false')
+	;
+NullLiteral
+	: {NullLiteral} 'null'
+	;
+/** *************************************
+ *   END OF SELECT STATEMENT
+ ** *************************************
+ */

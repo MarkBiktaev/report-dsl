@@ -1,0 +1,645 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.xtext.example.myrdsl/src-gen" editDirectory="/org.xtext.example.myrdsl.edit/src"
+    editorDirectory="/org.xtext.example.myrdsl.editor/src" modelPluginID="org.xtext.example.myrdsl"
+    forceOverwrite="true" modelName="RDsl" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    complianceLevel="5.0" copyrightFields="false" editPluginID="org.xtext.example.myrdsl.edit"
+    editorPluginID="org.xtext.example.myrdsl.editor" runtimeVersion="2.10">
+  <genPackages prefix="RDsl" basePackage="org.xtext.example.mydsl" disposableProviderFactory="true"
+      loadInitialization="true" literalsInterface="false" fileExtensions="myrdsl"
+      ecorePackage="RDsl.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="RDsl.ecore#//STRING">
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//STRING/bar"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//STRING/line"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//STRING/area"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//STRING/pie"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="RDsl.ecore#//ChartSubType">
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//ChartSubType/sbs"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//ChartSubType/stacked"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//ChartSubType/percent"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//ChartSubType/overlay"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="RDsl.ecore#//PositionType">
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//PositionType/North"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//PositionType/South"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//PositionType/West"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//PositionType/East"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="RDsl.ecore#//OrientationType">
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//OrientationType/vertical"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//OrientationType/horizontal"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="RDsl.ecore#//SizeUnit">
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//SizeUnit/M"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//SizeUnit/L"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//SizeUnit/Lr"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//SizeUnit/XL"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//SizeUnit/XXL"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//SizeUnit/S"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//SizeUnit/Sr"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//SizeUnit/XS"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//SizeUnit/XXS"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="RDsl.ecore#//LengthUnit">
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//LengthUnit/cm"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//LengthUnit/ems"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//LengthUnit/exs"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//LengthUnit/in"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//LengthUnit/mm"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//LengthUnit/pc"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//LengthUnit/pt"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//LengthUnit/px"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="RDsl.ecore#//HalignmentType">
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//HalignmentType/left"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//HalignmentType/center"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//HalignmentType/right"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//HalignmentType/justify"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="RDsl.ecore#//ValignmentType">
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//ValignmentType/bottom"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//ValignmentType/middle"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//ValignmentType/top"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="RDsl.ecore#//WhitespaceType">
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//WhitespaceType/nowrap"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//WhitespaceType/normal"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//WhitespaceType/pre"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="RDsl.ecore#//DisplayType">
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//DisplayType/block"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//DisplayType/inline"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//DisplayType/none"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="RDsl.ecore#//BorderLineStyleType">
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//BorderLineStyleType/solid"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//BorderLineStyleType/dotted"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//BorderLineStyleType/dashed"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//BorderLineStyleType/double"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="RDsl.ecore#//WidthType">
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//WidthType/thin"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//WidthType/medium"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//WidthType/thick"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="RDsl.ecore#//OutputFormatType">
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//OutputFormatType/xlsx"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//OutputFormatType/postscript"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//OutputFormatType/docx"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//OutputFormatType/pptx"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//OutputFormatType/pdf"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//OutputFormatType/xls"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//OutputFormatType/ppt"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//OutputFormatType/doc"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//OutputFormatType/html"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//OutputFormatType/odp"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//OutputFormatType/odt"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//OutputFormatType/ods"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="RDsl.ecore#//PageBreakType">
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//PageBreakType/pageBreakAfter"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//PageBreakType/pageBreakBefore"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//PageBreakType/pageBreakInside"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="RDsl.ecore#//PageBreakValue">
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//PageBreakValue/auto"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//PageBreakValue/always"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//PageBreakValue/avoid"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="RDsl.ecore#//SortType">
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//SortType/asc"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//SortType/desc"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="RDsl.ecore#//BorderType">
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//BorderType/R"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//BorderType/L"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//BorderType/T"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//BorderType/B"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="RDsl.ecore#//TargetType">
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//TargetType/Blank"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//TargetType/Parent"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//TargetType/Self"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//TargetType/Top"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="RDsl.ecore#//DrillThroughType">
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//DrillThroughType/NewWindow"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//DrillThroughType/SameFrame"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//DrillThroughType/ParentFrame"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//DrillThroughType/WholePage"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="RDsl.ecore#//ColorType">
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//ColorType/aqua"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//ColorType/blue"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//ColorType/black"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//ColorType/fuchsia"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//ColorType/gray"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//ColorType/green"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//ColorType/lime"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//ColorType/maroon"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//ColorType/navy"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//ColorType/olive"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//ColorType/orange"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//ColorType/purple"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//ColorType/red"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//ColorType/silver"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//ColorType/teal"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//ColorType/yellow"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//ColorType/white"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="RDsl.ecore#//ParameterControlType">
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//ParameterControlType/chb"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//ParameterControlType/tb"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//ParameterControlType/lb"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//ParameterControlType/rb"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//ParameterControlType/cb"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="RDsl.ecore#//ParameterValueType">
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//ParameterValueType/dynamic"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//ParameterValueType/static"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="RDsl.ecore#//ParameterType">
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//ParameterType/multi"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//ParameterType/simple"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="RDsl.ecore#//DataType">
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//DataType/boolean"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//DataType/date"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//DataType/datetime"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//DataType/decimal"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//DataType/float"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//DataType/integer"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//DataType/string"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//DataType/time"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="RDsl.ecore#//StaticParameterSort">
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//StaticParameterSort/label"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//StaticParameterSort/value"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="RDsl.ecore#//AggregatorFunction">
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//AggregatorFunction/count"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//AggregatorFunction/sum"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//AggregatorFunction/max"/>
+      <genEnumLiterals ecoreEnumLiteral="RDsl.ecore#//AggregatorFunction/min"/>
+    </genEnums>
+    <genClasses ecoreClass="RDsl.ecore#//Root">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//Root/root"/>
+    </genClasses>
+    <genClasses ecoreClass="RDsl.ecore#//Report">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//Report/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//Report/datasources"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//Report/datasets"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//Report/parameters"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//Report/styles"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//Report/pagesetup"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//Report/body"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//Report/elementProperties"/>
+    </genClasses>
+    <genClasses ecoreClass="RDsl.ecore#//elementProperties">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//elementProperties/properties"/>
+    </genClasses>
+    <genClasses ecoreClass="RDsl.ecore#//ElementProperty">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//ElementProperty/colorpalette"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//ElementProperty/font"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//ElementProperty/fontSize"/>
+    </genClasses>
+    <genClasses ecoreClass="RDsl.ecore#//Datasources">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//Datasources/datasource"/>
+    </genClasses>
+    <genClasses ecoreClass="RDsl.ecore#//Datasource">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//Datasource/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//Datasource/type"/>
+    </genClasses>
+    <genClasses ecoreClass="RDsl.ecore#//DatasourceSample">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//DatasourceSample/type"/>
+    </genClasses>
+    <genClasses ecoreClass="RDsl.ecore#//DatasourceJDBC">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//DatasourceJDBC/driver"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//DatasourceJDBC/url"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//DatasourceJDBC/user"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//DatasourceJDBC/password"/>
+    </genClasses>
+    <genClasses ecoreClass="RDsl.ecore#//DatasourceCSV">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//DatasourceCSV/url"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//DatasourceCSV/charset"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//DatasourceCSV/delimiter"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//DatasourceCSV/headerline"/>
+    </genClasses>
+    <genClasses ecoreClass="RDsl.ecore#//Datasets">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//Datasets/dataset"/>
+    </genClasses>
+    <genClasses ecoreClass="RDsl.ecore#//Dataset">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//Dataset/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RDsl.ecore#//Dataset/datasourceref"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//Dataset/field"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RDsl.ecore#//Dataset/parameter"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//Dataset/query"/>
+    </genClasses>
+    <genClasses ecoreClass="RDsl.ecore#//DatasetField">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//DatasetField/name"/>
+    </genClasses>
+    <genClasses ecoreClass="RDsl.ecore#//SimpleDatasetField"/>
+    <genClasses ecoreClass="RDsl.ecore#//ComputedDatasetField">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//ComputedDatasetField/aggregation"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//ComputedDatasetField/datatype"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//ComputedDatasetField/argument"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//ComputedDatasetField/filter"/>
+    </genClasses>
+    <genClasses ecoreClass="RDsl.ecore#//Parameters">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//Parameters/parameter"/>
+    </genClasses>
+    <genClasses ecoreClass="RDsl.ecore#//StaticParameterValues">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//StaticParameterValues/value"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//StaticParameterValues/sort"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//StaticParameterValues/sorttype"/>
+    </genClasses>
+    <genClasses ecoreClass="RDsl.ecore#//StaticParameterValue">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//StaticParameterValue/label"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//StaticParameterValue/value"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//StaticParameterValue/default"/>
+    </genClasses>
+    <genClasses ecoreClass="RDsl.ecore#//DynamicParameterValues">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//DynamicParameterValues/value"/>
+    </genClasses>
+    <genClasses ecoreClass="RDsl.ecore#//DynamicParameterValue">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RDsl.ecore#//DynamicParameterValue/dataset"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//DynamicParameterValue/label"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//DynamicParameterValue/value"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//DynamicParameterValue/default"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RDsl.ecore#//DynamicParameterValue/sort"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//DynamicParameterValue/sorttype"/>
+    </genClasses>
+    <genClasses ecoreClass="RDsl.ecore#//Parameter">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//Parameter/controltype"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//Parameter/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//Parameter/promt"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//Parameter/help"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//Parameter/hide"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//Parameter/required"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//Parameter/duplicate"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//Parameter/valuetype"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//Parameter/paramtype"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//Parameter/datatype"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//Parameter/values"/>
+    </genClasses>
+    <genClasses ecoreClass="RDsl.ecore#//ParameterValue"/>
+    <genClasses ecoreClass="RDsl.ecore#//Styles">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//Styles/style"/>
+    </genClasses>
+    <genClasses ecoreClass="RDsl.ecore#//PageSetup">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//PageSetup/properties"/>
+    </genClasses>
+    <genClasses ecoreClass="RDsl.ecore#//Body">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//Body/elements"/>
+    </genClasses>
+    <genClasses ecoreClass="RDsl.ecore#//ReportElements"/>
+    <genClasses ecoreClass="RDsl.ecore#//BasicElements"/>
+    <genClasses ecoreClass="RDsl.ecore#//ComplexElements"/>
+    <genClasses ecoreClass="RDsl.ecore#//Label">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//Label/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//Label/content"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//Label/properties"/>
+    </genClasses>
+    <genClasses ecoreClass="RDsl.ecore#//Text">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//Text/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//Text/content"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//Text/properties"/>
+    </genClasses>
+    <genClasses ecoreClass="RDsl.ecore#//DynamicText">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//DynamicText/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//DynamicText/content"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//DynamicText/properties"/>
+    </genClasses>
+    <genClasses ecoreClass="RDsl.ecore#//xData">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//xData/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//xData/content"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//xData/properties"/>
+    </genClasses>
+    <genClasses ecoreClass="RDsl.ecore#//Image">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//Image/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//Image/type"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//Image/content"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//Image/properties"/>
+    </genClasses>
+    <genClasses ecoreClass="RDsl.ecore#//Chart">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//Chart/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//Chart/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//Chart/subtype"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RDsl.ecore#//Chart/dataset"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//Chart/properties"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//Chart/title"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//Chart/legend"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//Chart/plot"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//Chart/axe"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//Chart/xaxe"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//Chart/yaxe"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//Chart/colorpalette"/>
+    </genClasses>
+    <genClasses ecoreClass="RDsl.ecore#//Legend">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//Legend/place"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//Legend/orientation"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//Legend/title"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//Legend/visibility"/>
+    </genClasses>
+    <genClasses ecoreClass="RDsl.ecore#//XAxe">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//XAxe/value"/>
+    </genClasses>
+    <genClasses ecoreClass="RDsl.ecore#//YAxe">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//YAxe/value"/>
+    </genClasses>
+    <genClasses ecoreClass="RDsl.ecore#//Axe">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//Axe/type"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//Axe/data"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//Axe/groupingby"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//Axe/title"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//Axe/line"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//Axe/majorgrid"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//Axe/minorgrid"/>
+    </genClasses>
+    <genClasses ecoreClass="RDsl.ecore#//Line">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//Line/value"/>
+    </genClasses>
+    <genClasses ecoreClass="RDsl.ecore#//ChartGrid">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//ChartGrid/scale"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//ChartGrid/value"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//ChartGrid/tick"/>
+    </genClasses>
+    <genClasses ecoreClass="RDsl.ecore#//Tick">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//Tick/place"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//Tick/value"/>
+    </genClasses>
+    <genClasses ecoreClass="RDsl.ecore#//ColorPalette">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//ColorPalette/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//ColorPalette/value"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RDsl.ecore#//ColorPalette/linkto"/>
+    </genClasses>
+    <genClasses ecoreClass="RDsl.ecore#//Place">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//Place/position"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//Place/anchor"/>
+    </genClasses>
+    <genClasses ecoreClass="RDsl.ecore#//Title">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//Title/value"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//Title/place"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//Title/properties"/>
+    </genClasses>
+    <genClasses ecoreClass="RDsl.ecore#//ChartElementProperties">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//ChartElementProperties/padding"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//ChartElementProperties/border"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//ChartElementProperties/visibility"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//ChartElementProperties/font"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//ChartElementProperties/fontSize"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//ChartElementProperties/color"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//ChartElementProperties/backgroundColor"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//ChartElementProperties/textStyle"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//ChartElementProperties/hAlign"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//ChartElementProperties/vAlign"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//ChartElementProperties/whiteSpace"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//ChartElementProperties/style"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//ChartElementProperties/display"/>
+    </genClasses>
+    <genClasses ecoreClass="RDsl.ecore#//List">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//List/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//List/properties"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//List/headerelements"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//List/detailelements"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//List/footerelements"/>
+    </genClasses>
+    <genClasses ecoreClass="RDsl.ecore#//Grid">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//Grid/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//Grid/properties"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//Grid/columns"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//Grid/rows"/>
+    </genClasses>
+    <genClasses ecoreClass="RDsl.ecore#//Table">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//Table/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//Table/properties"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RDsl.ecore#//Table/dataset"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//Table/columns"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//Table/headerrows"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//Table/detailrows"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//Table/footerrows"/>
+    </genClasses>
+    <genClasses ecoreClass="RDsl.ecore#//CrossTable">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//CrossTable/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//CrossTable/properties"/>
+    </genClasses>
+    <genClasses ecoreClass="RDsl.ecore#//Column">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//Column/order"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//Column/properties"/>
+    </genClasses>
+    <genClasses ecoreClass="RDsl.ecore#//Row">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//Row/order"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//Row/properties"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//Row/cells"/>
+    </genClasses>
+    <genClasses ecoreClass="RDsl.ecore#//Cell">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//Cell/order"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//Cell/properties"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//Cell/elements"/>
+    </genClasses>
+    <genClasses ecoreClass="RDsl.ecore#//PageProperties">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//PageProperties/font"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//PageProperties/fontSize"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//PageProperties/color"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//PageProperties/backgroundColor"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//PageProperties/textStyle"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//PageProperties/hAlign"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//PageProperties/vAlign"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//PageProperties/whiteSpace"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//PageProperties/style"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//PageProperties/display"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//PageProperties/border"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//PageProperties/padding"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//PageProperties/margin"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//PageProperties/visibility"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//PageProperties/pagebreak"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//PageProperties/toc"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//PageProperties/bookmark"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//PageProperties/width"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//PageProperties/height"/>
+    </genClasses>
+    <genClasses ecoreClass="RDsl.ecore#//LabelProperties">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//LabelProperties/font"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//LabelProperties/fontSize"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//LabelProperties/color"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//LabelProperties/backgroundColor"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//LabelProperties/textStyle"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//LabelProperties/hAlign"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//LabelProperties/vAlign"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//LabelProperties/whiteSpace"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//LabelProperties/style"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//LabelProperties/display"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//LabelProperties/border"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//LabelProperties/padding"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//LabelProperties/margin"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//LabelProperties/visibility"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//LabelProperties/pagebreak"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//LabelProperties/toc"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//LabelProperties/bookmark"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//LabelProperties/width"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//LabelProperties/height"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//LabelProperties/alttext"/>
+    </genClasses>
+    <genClasses ecoreClass="RDsl.ecore#//Font">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//Font/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//Font/value"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RDsl.ecore#//Font/linkto"/>
+    </genClasses>
+    <genClasses ecoreClass="RDsl.ecore#//FontSize">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//FontSize/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//FontSize/value"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RDsl.ecore#//FontSize/linkto"/>
+    </genClasses>
+    <genClasses ecoreClass="RDsl.ecore#//SizeValueUnit">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//SizeValueUnit/value"/>
+    </genClasses>
+    <genClasses ecoreClass="RDsl.ecore#//SizeValue">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//SizeValue/value"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//SizeValue/unit"/>
+    </genClasses>
+    <genClasses ecoreClass="RDsl.ecore#//SizeValuePercent">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//SizeValuePercent/value"/>
+    </genClasses>
+    <genClasses ecoreClass="RDsl.ecore#//Color"/>
+    <genClasses ecoreClass="RDsl.ecore#//StringColor">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//StringColor/value"/>
+    </genClasses>
+    <genClasses ecoreClass="RDsl.ecore#//HexColor">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//HexColor/value"/>
+    </genClasses>
+    <genClasses ecoreClass="RDsl.ecore#//RgbColor">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//RgbColor/r"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//RgbColor/g"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//RgbColor/b"/>
+    </genClasses>
+    <genClasses ecoreClass="RDsl.ecore#//TextStyle">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//TextStyle/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//TextStyle/I"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//TextStyle/B"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//TextStyle/U"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//TextStyle/T"/>
+    </genClasses>
+    <genClasses ecoreClass="RDsl.ecore#//HAlignment">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//HAlignment/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//HAlignment/value"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RDsl.ecore#//HAlignment/linkto"/>
+    </genClasses>
+    <genClasses ecoreClass="RDsl.ecore#//VAlignment">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//VAlignment/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//VAlignment/value"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RDsl.ecore#//VAlignment/linkto"/>
+    </genClasses>
+    <genClasses ecoreClass="RDsl.ecore#//Whitespace">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//Whitespace/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//Whitespace/value"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RDsl.ecore#//Whitespace/linkto"/>
+    </genClasses>
+    <genClasses ecoreClass="RDsl.ecore#//Display">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//Display/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//Display/value"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RDsl.ecore#//Display/linkto"/>
+    </genClasses>
+    <genClasses ecoreClass="RDsl.ecore#//Border">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//Border/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//Border/value"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RDsl.ecore#//Border/linkto"/>
+    </genClasses>
+    <genClasses ecoreClass="RDsl.ecore#//BorderAll"/>
+    <genClasses ecoreClass="RDsl.ecore#//BorderSide">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//BorderSide/right"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//BorderSide/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//BorderSide/top"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//BorderSide/bottom"/>
+    </genClasses>
+    <genClasses ecoreClass="RDsl.ecore#//BorderLine">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//BorderLine/style"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//BorderLine/width"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//BorderLine/color"/>
+    </genClasses>
+    <genClasses ecoreClass="RDsl.ecore#//BorderWidth">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//BorderWidth/value"/>
+    </genClasses>
+    <genClasses ecoreClass="RDsl.ecore#//WidthTypeValue">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//WidthTypeValue/value"/>
+    </genClasses>
+    <genClasses ecoreClass="RDsl.ecore#//Padding"/>
+    <genClasses ecoreClass="RDsl.ecore#//IndentAll"/>
+    <genClasses ecoreClass="RDsl.ecore#//IndentSide">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//IndentSide/right"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//IndentSide/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//IndentSide/top"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//IndentSide/bottom"/>
+    </genClasses>
+    <genClasses ecoreClass="RDsl.ecore#//IndentValue">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//IndentValue/value"/>
+    </genClasses>
+    <genClasses ecoreClass="RDsl.ecore#//PageBreak">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//PageBreak/before"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//PageBreak/after"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//PageBreak/inside"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//PageBreak/interval"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//PageBreak/repeat"/>
+    </genClasses>
+    <genClasses ecoreClass="RDsl.ecore#//Visibility">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//Visibility/show"/>
+    </genClasses>
+    <genClasses ecoreClass="RDsl.ecore#//LegendVisibility">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//LegendVisibility/value"/>
+    </genClasses>
+    <genClasses ecoreClass="RDsl.ecore#//HideAll">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//HideAll/expression"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//HideAll/format"/>
+    </genClasses>
+    <genClasses ecoreClass="RDsl.ecore#//HideForOne">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//HideForOne/value"/>
+    </genClasses>
+    <genClasses ecoreClass="RDsl.ecore#//HideForMore">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//HideForMore/format"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//HideForMore/expression"/>
+    </genClasses>
+    <genClasses ecoreClass="RDsl.ecore#//JSExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//JSExpression/value"/>
+    </genClasses>
+    <genClasses ecoreClass="RDsl.ecore#//Toc">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//Toc/style"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//Toc/value"/>
+    </genClasses>
+    <genClasses ecoreClass="RDsl.ecore#//Bookmark">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//Bookmark/expression"/>
+    </genClasses>
+    <genClasses ecoreClass="RDsl.ecore#//StyleRef">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RDsl.ecore#//StyleRef/refname"/>
+    </genClasses>
+    <genClasses ecoreClass="RDsl.ecore#//Style">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//Style/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//Style/properties"/>
+    </genClasses>
+    <genClasses ecoreClass="RDsl.ecore#//Width">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//Width/value"/>
+    </genClasses>
+    <genClasses ecoreClass="RDsl.ecore#//Height">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//Height/value"/>
+    </genClasses>
+    <genClasses ecoreClass="RDsl.ecore#//AltText">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDsl.ecore#//AltText/expression"/>
+    </genClasses>
+    <genClasses ecoreClass="RDsl.ecore#//Literal"/>
+    <genClasses ecoreClass="RDsl.ecore#//IntLiteral">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//IntLiteral/value"/>
+    </genClasses>
+    <genClasses ecoreClass="RDsl.ecore#//FloatLiteral">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//FloatLiteral/value"/>
+    </genClasses>
+    <genClasses ecoreClass="RDsl.ecore#//StringLiteral">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//StringLiteral/value"/>
+    </genClasses>
+    <genClasses ecoreClass="RDsl.ecore#//BooleanLiteral">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDsl.ecore#//BooleanLiteral/value"/>
+    </genClasses>
+    <genClasses ecoreClass="RDsl.ecore#//NullLiteral"/>
+    <genClasses ecoreClass="RDsl.ecore#//ID">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RDsl.ecore#//ID/value"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
